@@ -13,10 +13,7 @@ def timed (user):
     
     #list comprehension for plushies
     for plush in plushies:
-        time.sleep(random.randint(0,10))
-        naming = input("Enter plushie {plushies}")
-        if naming != plush:
-            print('You lose!')
+        naming = input("Enter plushie {plush}")
         return 
     
     after = time.time()
@@ -29,4 +26,4 @@ def timed (user):
     else:
         print("You did not make it in time :/ you lose a level.")
     
-    
+timed("player1")
