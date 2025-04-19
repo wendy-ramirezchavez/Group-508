@@ -2,15 +2,31 @@ import time
 import timeit
 import random
 
-def timed ():
+def timed (user):
     
-    initial = time.sleep(random.random(0,6)) 
-    actual = time.time()
+    #test input for my function
+    plushies = ["kitty", "bear", "flower", "bunny"]
+    print("You are asked to type these plushies")
+    print("Type all the words in time or else you lose.")
     
-    harvest = (actual - initial)
+    initial = time.time()
     
-    if harvest < initial:
-        print("You advance to the next level")
+    #list comprehension for plushies
+    for plush in plushies:
+        time.sleep(random.randint(0,10))
+        naming = input("Enter plushie {plushies}")
+        if naming != plush:
+            print('You lose!')
+        return 
+    
+    after = time.time()
+    
+    duration = (after - initial)
+    print(duration)
+    
+    if duration < 30:
+        print("You made it in time! You advance to the next level")
     else:
-        print ("You lose one level")
-     
+        print("You did not make it in time :/ you lose a level.")
+    
+    
