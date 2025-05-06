@@ -5,15 +5,15 @@ import random
 def timed (user):
     
     #test input for my function
-    plushies = ["kitty", "bear", "flower", "bunny"]
-    print("You are asked to type these plushies")
+    crops = ["kitty", "bear", "flower", "bunny"]
+    print("You are asked to type these crops")
     print("Type all the words in time or else you lose.")
     
     initial = time.time()
     
     #list comprehension for plushies
-    for plush in plushies:
-        naming = input("Enter plushie {plush}")
+    for crop in crops:
+        naming = input("Enter crop {crop}")
         return 
     
     after = time.time()
