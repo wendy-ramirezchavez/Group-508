@@ -28,8 +28,6 @@ level4 = {"strawberry": 3,
 
 customer_satisfaction = 0
 
-
-
 def level_check_method(user_input, crops_for_sale, customer_satisfaction): 
     bank = []
     correct = set(user_input) & set(crops_for_sale)
@@ -71,3 +69,28 @@ def timed (user):
 
     
 answer, duration = timed("player1") 
+
+
+def new_level_crops(crop_list, available_crops, bank_balance, crops_sold, 
+                    crop_thresholds, unlocked_levels):
+
+    bank_limit = {
+    1: 15,
+    2: 30,
+    3: 45,
+    4: 60
+    
+}
+    if bank_balance >= bank_limit and crops_sold >= crop_limit:
+        if i < len(available_crops) and available_crop[i] not in crop_list:
+            crop_list.append(available_crops[i])
+            print (f"Yayyyyy! You've unlocked a new crop: {available_crops[i]}")
+            
+            
+    for level, threshold in bank_limit.items():
+        if bank_balance >= threshold and level not in unlocked_level:
+            unlocked_levels.add(level)
+            print(f"Yayyyy! Level {level} unlocked!")
+        
+        
+        return crop_list, unlocked_levels
