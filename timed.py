@@ -28,6 +28,8 @@ level4 = {"strawberry": 3,
 
 customer_satisfaction = 0
 
+
+
 def level_check_method(user_input, crops_for_sale, customer_satisfaction): 
     bank = []
     correct = set(user_input) & set(crops_for_sale)
@@ -49,7 +51,7 @@ def timed (user):
     
     #list comprehension for plushies
     for crop in crops:
-        naming = input("Enter crop {crop}:")
+        naming = input("Enter crop:")
         return 
     
     after = time.time()
