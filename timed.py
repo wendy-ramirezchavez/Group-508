@@ -44,15 +44,18 @@ def timed (user):
     
     #test input for my function
     crops = ["potato", "carrot", "asparagus", "broccoli", "corn" ]
-    print("You are asked to type these crops")
+    print(f"You are asked to type these crops:{crops}")
+    print("when you are finished, type 'done' ")
     print("Type all the words in time or else you lose.")
     
     initial = time.time()
-    
-    #list comprehension for plushies
-    for crop in crops:
-        naming = input("Enter crop:")
-        return 
+    answers = []
+         
+    while True:
+        naming = input("Enter crop: ")
+        if naming == "done":  
+            break
+        answers.append(naming)
     
     after = time.time()
     
@@ -63,5 +66,8 @@ def timed (user):
         print("You made it in time! You advance to the next level")
     else:
         print("You did not make it in time :/ you lose a level.")
+    return answers , duration < 30
+
+
     
-timed("player1")
+answer, duration = timed("player1") 
