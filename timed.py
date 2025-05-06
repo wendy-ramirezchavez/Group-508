@@ -34,23 +34,23 @@ level1 = {"potato" : 2,
           "broccoli" : 4, 
           "corn" : 3
 }
-level2 = ["wheat" : 2, 
+level2 = {"wheat" : 2, 
           "flour" : 1, 
           "bread": 5, 
           "biscuits": 4, 
-          "cake": 3]
+          "cake": 3}
 
-level3 = ["basil": 3, 
+level3 = {"basil": 3, 
           "cilantro": 2,
           "dill": 5, 
           "parsley": 1, 
-          "chives": 4]
+          "chives": 4}
 
-level4 = ["strawberry": 3, 
+level4 = {"strawberry": 3, 
           "apple": 1, 
           "orange": 2, 
           "blueberries": 4,
-          "raspberries": 5]
+          "raspberries": 5}
 
 customer_satisfaction = 1
 
