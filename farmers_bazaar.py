@@ -5,31 +5,30 @@ import random
 class FarmersBazaar():
 
 
-level1 = {"potato" : 2, 
+    level1 = {"potato" : 2, 
           "carrot" : 1, 
           "asparagus" : 5, 
           "broccoli" : 4, 
-          "corn" : 3
-}
-level2 = {"wheat" : 2, 
+          "corn" : 3}
+    level2 = {"wheat" : 2, 
           "flour" : 1, 
           "bread": 5, 
           "biscuits": 4, 
           "cake": 3}
 
-level3 = {"basil": 3, 
+    level3 = {"basil": 3, 
           "cilantro": 2,
           "dill": 5, 
           "parsley": 1, 
           "chives": 4}
 
-level4 = {"strawberry": 3, 
+    level4 = {"strawberry": 3, 
           "apple": 1, 
           "orange": 2, 
           "blueberries": 4,
           "raspberries": 5}
 
-customer_satisfaction = 0
+    customer_satisfaction = 0
 
 def level_check_method(user_input, crops_for_sale, customer_satisfaction): 
     bank = []
@@ -97,38 +96,16 @@ def new_level_crops(crop_list, available_crops, bank_balance, crops_sold,
         
         
         return crop_list, unlocked_levels
-def upgrade(player_level,completed_tasks, daily_tasks, max_level=10):
-    need_tasks = daily_tasks.get(player_level,[])
-
-    for task in need_tasks:
-        if task not in completed_tasks:
-            return player_level, [], {"finish all the task to level up"}
     
-    player_level +=1
-    tasks_unlock = daily_tasks.get(player_level,[])
     
-    rewards = {}
-    if 1<= player_level <= 4:
-        rewards["starter_kit"] = True
-    elif 5 <= player_level <= 9:
-        rewards["upgrade_crops"] = True
-    else: 
-        rewards["premium_market"] = True
+    
+    
+def main():
+    game = FarmersBazaar()
         
-    return player_level, tasks_unlock, rewards
+    
+    print(f"Total Bank Balance: ${game.bank_balance}")
+    print(f"Total Customer Satisfaction: {game.customer_satisfaction}")
         
-        # Some daily tasks for each level
-daily_task = {
-    1: ["watering", "fertilizing"],
-    2: ["protecting", "harvesting"],
-    3: ["watering", "harvesting", "fertilizing"]
-}
-
 if __name__ == "__main__":
-    player_level = 1
-    completed_tasks = ["watering", "fertilizing"]
-    new_level, tasks_unlock, rewards = upgrade(player_level,completed_tasks, daily_task)
-    
-    print("New Level:", new_level)
-    print("Unlock Tasks:", tasks_unlock)
-    print("Rewards:", rewards)
+    main()
