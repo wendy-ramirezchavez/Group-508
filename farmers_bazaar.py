@@ -26,16 +26,21 @@ class FarmersBazaar():
           "orange": 2, 
           "blueberries": 4,
           "raspberries": 5}
-   
+   daily_task = {
+        1: ["watering", "fertilizing"],
+        2: ["protecting", "harvesting"],
+        3: ["watering", "harvesting", "fertilizing"]
+    }
    
     def __init__(self):
         self.customer_satisfaction = 0
         self.bank_balance = 0
         self.unlocked_levels = {1}
 
-    customer_satisfaction = 0
-
-    def level_check_method(self, user_input, crops_for_sale, customer_satisfaction): 
+    customer_satisfaction = 0   
+    
+    
+    def level_check_method(user_input, crops_for_sale, customer_satisfaction): 
         bank = []
         correct = set(user_input) & set(crops_for_sale)
         for crop in correct:
@@ -45,7 +50,7 @@ class FarmersBazaar():
         return (self.bank_balance, self.customer_satisfaction)
 
 
-    def timed (self, user):
+    def timed (user):
     
     #test input for my function
         crops = ["potato", "carrot", "asparagus", "broccoli", "corn" ]
@@ -75,8 +80,7 @@ class FarmersBazaar():
 
 
 
-
-    def new_level_crops(self, crop_list, available_crops, bank_balance, crops_sold, 
+    def new_level_crops(crop_list, available_crops, bank_balance, crops_sold, 
                     crop_thresholds, unlocked_levels):
 
         bank_limit = {
@@ -97,20 +101,42 @@ class FarmersBazaar():
                 print(f"Yayyyy! Level {level} unlocked!")
         
         
-            return crop_list, unlocked_levels
+            return crop_list, unlocked_levels 
     
+    def upgrade(player_level,completed_tasks, daily_tasks, max_level=10):
+        need_tasks = daily_tasks.get(player_level,[])
+
+        for task in need_tasks:
+            if task not in completed_tasks:
+                return player_level, [], {"finish all the task to level up"}
     
+        player_level +=1
+        tasks_unlock = daily_tasks.get(player_level,[])
     
-    
-def main():
-    game = FarmersBazaar()
+        rewards = {}
+        if 1<= player_level <= 4:
+            rewards["starter_kit"] = True
+        elif 5 <= player_level <= 9:
+            rewards["upgrade_crops"] = True
+        else: 
+            rewards["premium_market"] = True
         
-    
-    print(f"Total Bank Balance: ${game.bank_balance}")
-    print(f"Total Customer Satisfaction: {game.customer_satisfaction}")
-    answer, duration = game.timed("player1") 
-    
-    crops_for_sale = FarmersBazaar.level1
-    
+        return player_level, tasks_unlock, rewards
+        
+        # Some daily tasks for each level
+    daily_task = {
+        1: ["watering", "fertilizing"],
+        2: ["protecting", "harvesting"],
+        3: ["watering", "harvesting", "fertilizing"]
+    }
+
 if __name__ == "__main__":
-    main()
+    player_level = 1
+    completed_tasks = ["watering", "fertilizing"]
+    new_level, tasks_unlock, rewards = upgrade(player_level,completed_tasks, daily_task)
+    
+    print (f"")
+    print("New Level:", new_level)
+    print("Unlock Tasks:", tasks_unlock)
+    print("Rewards:", rewards)
+
