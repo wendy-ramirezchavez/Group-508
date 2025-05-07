@@ -91,7 +91,7 @@ class FarmersBazaar():
             4: 60}
             
         for level, threshold in bank_limit.items():
-            if self.bank_balance >= threshold and level not in self.unlocked_level:
+            if self.bank_balance >= threshold and level not in self.unlocked_levels:
                 self.unlocked_levels.add(level)
                 print(f"Yayyyy! Level {level} unlocked!")
         
@@ -128,19 +128,18 @@ def main():
     completed_tasks = ["watering", "fertilizing"]
     game = FarmersBazaar()
   
-   levels_in_game = {
-       1: FarmersBazaar.level1,
-       2: FarmersBazaar.level2,
-       3: FarmersBazaar.level3,
-       4: FarmersBazaar.level4
+levels_in_game = {
+    1: FarmersBazaar.level1,
+    2: FarmersBazaar.level2,
+    3: FarmersBazaar.level3,
+    4: FarmersBazaar.level4
     }
-   while true:
-       print(f"Level: {player_level}")
-       print(f"Total Bank Balance: ${game.bank_balance}")
-       print(f"Total Customer Satisfaction: {game.customer_satisfaction}")
+while True:
+    print(f"Total Bank Balance: ${self.bank_balance}")
+    print(f"Total Customer Satisfaction: {game.customer_satisfaction}")
        
-       crops_for_sale = levels_in_game[player_level]
-       answers, on_time = game.timed(list(crops_for_sale.keys()))
+    crops_for_sale = levels_in_game[player_level]
+    answers, on_time = game.timed(list(crops_for_sale.keys()))
     
     for level in range(1, 4):
         if level not in game.unlocked_levels:
