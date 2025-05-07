@@ -128,6 +128,8 @@ if __name__ == "__main__":
     completed_tasks = ["watering", "fertilizing"]
     new_level, tasks_unlock, rewards = upgrade(player_level,completed_tasks, daily_task)
     
+    print (f"")
     print("New Level:", new_level)
     print("Unlock Tasks:", tasks_unlock)
     print("Rewards:", rewards)
+
