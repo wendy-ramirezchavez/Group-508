@@ -33,7 +33,7 @@ class FarmersBazaar():
     }
    
     def __init__(self):
-        self.customer_satisfaction = 0
+        self.customer_satisfaction = 1.0
         self.bank_balance = 0
         self.unlocked_levels = {1}
         self.crop_list = list(FarmersBazaar.level1.keys())  
@@ -92,18 +92,17 @@ class FarmersBazaar():
             2: 30,
             3: 45,
             4: 60}
-        
-        if bank_balance >= bank_limit and crops_sold >= crop_limit:
-            if i < len(available_crops) and available_crop[i] not in crop_list:
-                crop_list.append(available_crops[i])
-                print (f"Yayyyyy! You've unlocked a new crop: {available_crops[i]}")
-            
             
         for level, threshold in bank_limit.items():
-            if bank_balance >= threshold and level not in unlocked_level:
-                unlocked_levels.add(level)
+            if self.bank_balance >= threshold and level not in self.unlocked_level:
+                self.unlocked_levels.add(level)
                 print(f"Yayyyy! Level {level} unlocked!")
         
+                new_crops = list(level_daye[level].keys())
+                for crop in new_crops:
+                    if crop not in self.crop_list:
+                        self.crop_list.append(crop)
+                print (f"Yayyyy! New crops: {new_crops} unlocked!"")
         
             return crop_list, unlocked_levels 
     
@@ -134,6 +133,27 @@ class FarmersBazaar():
         3: ["watering", "harvesting", "fertilizing"]
     }
 
+
+def main():
+    player_level = 1
+    completed_tasks = ["watering", "fertilizing"]
+    game = FarmersBazaar()
+  
+   levels_in_game = {
+       "Level 1": FarmersBazaar.level1,
+       "Level 2": FarmersBazaar.level2,
+       "Level 3": FarmersBazaar.level3,
+       "Level 4": FarmersBazaar.level4
+       }
+    
+    for level in range(1, 4):
+        if level not in game.unlocked_levels:
+            continue
+  
+   print(f"Total Bank Balance: ${game.bank_balance}")
+   print(f"Total Customer Satisfaction: {game.customer_satisfaction}")
+      
+    
 if __name__ == "__main__":
     player_level = 1
     completed_tasks = ["watering", "fertilizing"]
