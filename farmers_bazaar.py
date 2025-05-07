@@ -66,14 +66,12 @@ class FarmersBazaar():
         print(duration)
     
         if duration < 30:
-            print("You made it in time! You advance to the next level")
+            print("You made it in time! You advance to the next level. Type (next level) to continue")
         else:
             print("You did not make it in time :/ you lose a level.")
         return answers , duration < 30
 
 
-    
-    answer, duration = timed("player1") 
 
 
     def new_level_crops(self, crop_list, available_crops, bank_balance, crops_sold, 
@@ -108,6 +106,7 @@ def main():
     
     print(f"Total Bank Balance: ${game.bank_balance}")
     print(f"Total Customer Satisfaction: {game.customer_satisfaction}")
-        
+    answer, duration = game.timed("player1") 
+    
 if __name__ == "__main__":
     main()
