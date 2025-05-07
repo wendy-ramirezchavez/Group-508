@@ -4,7 +4,6 @@ import random
 
 class FarmersBazaar():
 
-
 level1 = {"potato" : 2, 
           "carrot" : 1, 
           "asparagus" : 5, 
