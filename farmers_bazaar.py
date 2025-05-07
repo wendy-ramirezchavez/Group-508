@@ -26,7 +26,7 @@ class FarmersBazaar():
           "orange": 2, 
           "blueberries": 4,
           "raspberries": 5}
-   daily_task = {
+    daily_task = {
         1: ["watering", "fertilizing"],
         2: ["protecting", "harvesting"],
         3: ["watering", "harvesting", "fertilizing"]
@@ -36,11 +36,10 @@ class FarmersBazaar():
         self.customer_satisfaction = 0
         self.bank_balance = 0
         self.unlocked_levels = {1}
-
-    customer_satisfaction = 0   
+        self.crop_list = list(FarmersBazaar.level1.keys())  
     
     
-    def level_check_method(user_input, crops_for_sale, customer_satisfaction): 
+    def level_check_method(self, user_input, crops_for_sale, customer_satisfaction): 
         bank = []
         correct = set(user_input) & set(crops_for_sale)
         for crop in correct:
@@ -50,7 +49,7 @@ class FarmersBazaar():
         return (self.bank_balance, self.customer_satisfaction)
 
 
-    def timed (user):
+    def timed (self, crops):
     
     #test input for my function
         crops = ["potato", "carrot", "asparagus", "broccoli", "corn" ]
@@ -80,14 +79,19 @@ class FarmersBazaar():
 
 
 
-    def new_level_crops(crop_list, available_crops, bank_balance, crops_sold, 
-                    crop_thresholds, unlocked_levels):
+    def new_level_crops(self):
+
+        level_next_game = {
+         "Level 2": FarmersBazaar.level2,
+         "Level 3": FarmersBazaar.level3,
+         "Level 4": FarmersBazaar.level4
+         }
 
         bank_limit = {
-        1: 15,
-        2: 30,
-        3: 45,
-        4: 60}
+            1: 15,
+            2: 30,
+            3: 45,
+            4: 60}
         
         if bank_balance >= bank_limit and crops_sold >= crop_limit:
             if i < len(available_crops) and available_crop[i] not in crop_list:
