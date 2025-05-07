@@ -26,6 +26,8 @@ class FarmersBazaar():
           "orange": 2, 
           "blueberries": 4,
           "raspberries": 5}
+   
+   
     def __init__(self):
         self.customer_satisfaction = 0
         self.bank_balance = 0
