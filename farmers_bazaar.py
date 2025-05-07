@@ -39,14 +39,13 @@ class FarmersBazaar():
         self.crop_list = list(FarmersBazaar.level1.keys())  
     
     
-    def level_check_method(self, user_input, crops_for_sale, customer_satisfaction): 
-        bank = []
+    def level_check_method(self, user_input, crops_for_sale): 
         correct = set(user_input) & set(crops_for_sale)
-        for crop in correct:
-            bank.append(crops_for_sale[crop])
-            self.bank_balance = sum(bank)
+        bank = [crops_for_sale[crop] for crop in correct]
+        bank_balance = sum(bank)
+        self.bank_balance = sum(bank)
         self.customer_satisfaction -= len(set(user_input) ^ set(crops_for_sale))* .10
-        return (self.bank_balance, self.customer_satisfaction)
+        return bank_balance, self.customer_satisfaction
 
 
     def timed (self, crops):
@@ -73,11 +72,11 @@ class FarmersBazaar():
     
         if duration < 30:
             print("You made it in time! You advance to the next level. Type (next level) to continue")
+            return answers, True
         else:
             print("You did not make it in time :/ you lose a level.")
-        return answers , duration < 30
-
-
+            self.customer_satisfaction -= 0.2
+            return answers, False
 
     def new_level_crops(self):
 
@@ -102,9 +101,7 @@ class FarmersBazaar():
                 for crop in new_crops:
                     if crop not in self.crop_list:
                         self.crop_list.append(crop)
-                print (f"Yayyyy! New crops: {new_crops} unlocked!"")
-        
-            return crop_list, unlocked_levels 
+                print (f"Yayyyy! New crops: {new_crops} unlocked!")
     
     def upgrade(player_level,completed_tasks, daily_tasks, max_level=10):
         need_tasks = daily_tasks.get(player_level,[])
@@ -140,18 +137,18 @@ def main():
     game = FarmersBazaar()
   
    levels_in_game = {
-       "Level 1": FarmersBazaar.level1,
-       "Level 2": FarmersBazaar.level2,
-       "Level 3": FarmersBazaar.level3,
-       "Level 4": FarmersBazaar.level4
-       }
+        "Level 1": FarmersBazaar.level1,
+        "Level 2": FarmersBazaar.level2,
+        "Level 3": FarmersBazaar.level3,
+        "Level 4": FarmersBazaar.level4
+    }
     
     for level in range(1, 4):
         if level not in game.unlocked_levels:
             continue
   
-   print(f"Total Bank Balance: ${game.bank_balance}")
-   print(f"Total Customer Satisfaction: {game.customer_satisfaction}")
+        print(f"Total Bank Balance: ${game.bank_balance}")
+        print(f"Total Customer Satisfaction: {game.customer_satisfaction}")
       
     
 if __name__ == "__main__":
