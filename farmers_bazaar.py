@@ -38,9 +38,9 @@ class FarmersBazaar():
         correct = set(user_input) & set(crops_for_sale)
         for crop in correct:
             bank.append(crops_for_sale[crop])
-            bank_balance = sum(bank)
-        customer_satisfaction -= len(set(user_input) ^ set(crops_for_sale))* .10
-        return (bank_balance, customer_satisfaction)
+            self.bank_balance = sum(bank)
+        self.customer_satisfaction -= len(set(user_input) ^ set(crops_for_sale))* .10
+        return (self.bank_balance, self.customer_satisfaction)
 
 
     def timed (self, user):
@@ -107,6 +107,8 @@ def main():
     print(f"Total Bank Balance: ${game.bank_balance}")
     print(f"Total Customer Satisfaction: {game.customer_satisfaction}")
     answer, duration = game.timed("player1") 
+    
+    crops_for_sale = FarmersBazaar.level1
     
 if __name__ == "__main__":
     main()
