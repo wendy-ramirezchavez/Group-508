@@ -43,7 +43,7 @@ class FarmersBazaar():
         correct = set(user_input) & set(crops_for_sale)
         bank = [crops_for_sale[crop] for crop in correct]
         bank_balance = sum(bank)
-        self.bank_balance = sum(bank)
+        self.bank_balance += sum(bank)
         self.customer_satisfaction -= len(set(user_input) ^ set(crops_for_sale))* .10
         return bank_balance, self.customer_satisfaction
 
@@ -51,7 +51,6 @@ class FarmersBazaar():
     def timed (self, crops):
     
     #test input for my function
-        crops = ["potato", "carrot", "asparagus", "broccoli", "corn" ]
         print(f"You are asked to type these crops:{crops}")
         print("when you are finished, type 'done' ")
         print("Type all the words in time or else you lose.")
@@ -87,7 +86,6 @@ class FarmersBazaar():
          }
 
         bank_limit = {
-            1: 15,
             2: 30,
             3: 45,
             4: 60}
@@ -97,7 +95,7 @@ class FarmersBazaar():
                 self.unlocked_levels.add(level)
                 print(f"Yayyyy! Level {level} unlocked!")
         
-                new_crops = list(level_daye[level].keys())
+                new_crops = list(level_next_game[level].keys())
                 for crop in new_crops:
                     if crop not in self.crop_list:
                         self.crop_list.append(crop)
@@ -122,13 +120,7 @@ class FarmersBazaar():
             rewards["premium_market"] = True
         
         return player_level, tasks_unlock, rewards
-        
-        # Some daily tasks for each level
-    daily_task = {
-        1: ["watering", "fertilizing"],
-        2: ["protecting", "harvesting"],
-        3: ["watering", "harvesting", "fertilizing"]
-    }
+    
 
 
 def main():
@@ -137,19 +129,23 @@ def main():
     game = FarmersBazaar()
   
    levels_in_game = {
-        "Level 1": FarmersBazaar.level1,
-        "Level 2": FarmersBazaar.level2,
-        "Level 3": FarmersBazaar.level3,
-        "Level 4": FarmersBazaar.level4
+       1: FarmersBazaar.level1,
+       2: FarmersBazaar.level2,
+       3: FarmersBazaar.level3,
+       4: FarmersBazaar.level4
     }
+   while true:
+       print(f"Level: {player_level}")
+       print(f"Total Bank Balance: ${game.bank_balance}")
+       print(f"Total Customer Satisfaction: {game.customer_satisfaction}")
+       
+       crops_for_sale = levels_in_game[player_level]
+       answers, on_time = game.timed(list(crops_for_sale.keys()))
     
     for level in range(1, 4):
         if level not in game.unlocked_levels:
             continue
   
-        print(f"Total Bank Balance: ${game.bank_balance}")
-        print(f"Total Customer Satisfaction: {game.customer_satisfaction}")
-      
     
 if __name__ == "__main__":
     player_level = 1
@@ -160,4 +156,7 @@ if __name__ == "__main__":
     print("New Level:", new_level)
     print("Unlock Tasks:", tasks_unlock)
     print("Rewards:", rewards)
+
+    main()
+
 

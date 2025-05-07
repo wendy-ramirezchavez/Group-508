@@ -81,25 +81,6 @@ def new_level_crops(crop_list, available_crops, bank_balance, crops_sold,
     4: 60
     
 }
-<<<<<<< HEAD
-level2 = {"wheat" : 2, 
-          "flour" : 1, 
-          "bread": 5, 
-          "biscuits": 4, 
-          "cake": 3}
-
-level3 = {"basil": 3, 
-          "cilantro": 2,
-          "dill": 5, 
-          "parsley": 1, 
-          "chives": 4}
-
-level4 = {"strawberry": 3, 
-          "apple": 1, 
-          "orange": 2, 
-          "blueberries": 4,
-          "raspberries": 5}
-=======
     if bank_balance >= bank_limit and crops_sold >= crop_limit:
         if i < len(available_crops) and available_crop[i] not in crop_list:
             crop_list.append(available_crops[i])
@@ -117,7 +98,6 @@ level4 = {"strawberry": 3,
 
 def upgrade(player_level,completed_tasks, daily_tasks, max_level=10):
     need_tasks = daily_tasks.get(player_level,[])
->>>>>>> refs/remotes/origin/main
 
     for task in need_tasks:
         if task not in completed_tasks:
@@ -148,6 +128,8 @@ if __name__ == "__main__":
     completed_tasks = ["watering", "fertilizing"]
     new_level, tasks_unlock, rewards = upgrade(player_level,completed_tasks, daily_task)
     
+    print (f"")
     print("New Level:", new_level)
     print("Unlock Tasks:", tasks_unlock)
     print("Rewards:", rewards)
+
