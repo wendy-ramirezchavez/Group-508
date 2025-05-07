@@ -33,7 +33,7 @@ class FarmersBazaar():
 
     customer_satisfaction = 0
 
-    def level_check_method(user_input, crops_for_sale, customer_satisfaction): 
+    def level_check_method(self, user_input, crops_for_sale, customer_satisfaction): 
         bank = []
         correct = set(user_input) & set(crops_for_sale)
         for crop in correct:
@@ -43,7 +43,7 @@ class FarmersBazaar():
         return (bank_balance, customer_satisfaction)
 
 
-    def timed (user):
+    def timed (self, user):
     
     #test input for my function
         crops = ["potato", "carrot", "asparagus", "broccoli", "corn" ]
@@ -76,7 +76,7 @@ class FarmersBazaar():
     answer, duration = timed("player1") 
 
 
-    def new_level_crops(crop_list, available_crops, bank_balance, crops_sold, 
+    def new_level_crops(self, crop_list, available_crops, bank_balance, crops_sold, 
                     crop_thresholds, unlocked_levels):
 
         bank_limit = {
