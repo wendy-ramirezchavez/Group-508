@@ -2,9 +2,6 @@ import time
 import timeit
 import random
 
-class FarmersBazaar():
-
-
 level1 = {"potato" : 2, 
           "carrot" : 1, 
           "asparagus" : 5, 
@@ -28,6 +25,9 @@ level4 = {"strawberry": 3,
           "orange": 2, 
           "blueberries": 4,
           "raspberries": 5}
+customer_satisfaction = 0
+class FarmersBazaar():
+
 
 customer_satisfaction = 0
 
