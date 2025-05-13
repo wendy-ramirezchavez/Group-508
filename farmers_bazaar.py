@@ -106,18 +106,14 @@ class FarmersBazaar():
         
         return self.player_level, tasks_unlock, rewards
     
-    def beginning():
-        print("🐝 🍄 🌿 Hello Farmer, welcome to our game Farmer's Bazaar! 🌿 🍄 🐝")
+    def beginning(self):
+        print("""🐝 🍄 🌿 Hello Farmer, welcome to our game Farmer's Bazaar! 🌿 🍄 🐝""")
         print("""
-              Are you ready to embark on the jouney of growing, harvesting, selling, and spreading joy to your customers?
-              
-              🍉 🌽 🍇 🍓 🫐 🍰 🥕 🥦 🍞 🍎 🍉 🌽 🍇 🍓 🫐 🍰 🥕 🥦 🍞 🍎 🍉 🌽 🍇 🍓 🫐 🍰 🥕 🥦 🍞 🍎 🍉 🌽 🍇 🍓 🫐 🍰 🥕 🥦 🍞 🍎 🍉
-              
-              If you are, please type "I can grow!"
-              
-              """)
+              \nAre you ready to embark on the jouney of growing, harvesting, selling, and spreading joy to your customers?
+              \n🍉 🌽 🍇 🍓 🫐 🍰 🥕 🥦 🍞 🍎 🍉 🌽 🍇 🍓 🫐 🍰 🥕 🥦 🍞 🍎 🍉 🌽 🍇 🍓 🫐 🍰 🥕 🥦 🍞 🍎 🍉 🌽 🍇 🍓 🫐 🍰 🥕 
+              \nIf you are, please type "I can grow!" """)
         while True: 
-            first_message = input.strip().lower()
+            first_message = input().strip()
             if first_message == "I can grow!":
                 print("Great! Let's go!")
                 break
@@ -125,9 +121,11 @@ class FarmersBazaar():
                 print("Please type 'I can grow!' in terminal to begin")
 
 def main():
+    game = FarmersBazaar()
+    game.beginning()
+    
     player_level = 1
     completed_tasks = ["watering", "fertilizing"]
-    game = FarmersBazaar()
 
     levels_in_game = {
         1: FarmersBazaar.level1,
