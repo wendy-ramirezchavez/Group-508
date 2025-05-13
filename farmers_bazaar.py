@@ -33,8 +33,25 @@ class FarmersBazaar():
         3: ["baking", "packaging"],
         4: ["marketing", "distributing"]
     }
+    characters = {
+    "Maru": {
+        "specialty": "Technology and carpenting",
+        "bonus": "Starts with extra $5 in bank",
+     
+    },
+    "Penny": {
+        "specialty": "Education and reading",
+        "bonus": "Starts with 1.1 customer satisfaction",
+      
+    },
+    "Clint": {
+        "specialty": "Crafts and building ",
+        "bonus": "Unlocks one random extra crop at start",
     
-    def __init__(self):
+    }
+    }
+    
+    def __init__(self, character_name):
         """
         Initializes the game with intial customer_satisfaction, bank_balance, and player levels
         """
@@ -45,6 +62,18 @@ class FarmersBazaar():
         self.player_level = 1
         self.completed_tasks = ["watering", "fertilizing"]
         self.current_order = None
+        self.character = character_name
+        
+        character_data = FarmersBazaar.characters.get(character_name, {})
+        self.bank_balance += character_data.get("bonus_amount", 0)
+        self.customer_satisfaction = character_data.get("bonus_satisfaction", self.customer_satisfaction)
+        
+        if character_data.get("bonus_crop"):
+            extra_crop = random.choice(["spinach", "radish", "turnip"])
+            self.crop_list.append(extra_crop)
+            print(f"Bonus Crop Unlocked: {extra_crop}")
+
+
 
 
     def level_check_method(self,user_input, crops_for_sale): 
@@ -229,11 +258,30 @@ def main():
     Main game function that runs the full program so players can go through
     levels, tasks, and earn money
     """
-    game = FarmersBazaar()
-    game.beginning()
     
-    player_level = 1
-    completed_tasks = ["watering", "fertilizing"]
+    print("Choose your character to begin your farming journey!")
+    print("1. Maru (Tech genius and efficient)")
+    print("2. Penny (Gentle and organized)")
+    print("3. Clint ( Hardworking and strong)")
+
+    character_options = {
+        "1": "Maru",
+        "2": "Penny",
+        "3": "Clint"
+    }
+    while True:
+        choice = input("Enter the number of your character choice (1/2/3): ").strip()
+        if choice in character_options:
+            character_name = character_options[choice]
+            print(f"You have chosen {character_name}! 🌱")
+            break
+        else:
+            print("Invalid input. Please enter 1, 2, or 3.")
+            
+            
+    game = FarmersBazaar(character_name)
+    game.beginning()
+
 
     levels_in_game = {
         1: FarmersBazaar.level1,
@@ -243,11 +291,11 @@ def main():
     }
 
     while True:
-        print(f"\nCurrent Level: {player_level}")
+        print(f"\nCurrent Level: {game.player_level}")
         print(f"Total Bank Balance: ${game.bank_balance}")
         print(f"Total Customer Satisfaction: {game.customer_satisfaction:.2f}")
 
-        crops_for_sale = levels_in_game[player_level]
+        crops_for_sale = levels_in_game[game.player_level]
         crop_names = list(crops_for_sale.keys())
         answers, on_time = game.timed(crop_names)
 
@@ -256,9 +304,9 @@ def main():
 
         game.new_level_crops()
 
-        player_level, tasks_unlock, rewards = game.upgrade()
+        game.player_level, tasks_unlock, rewards = game.upgrade()
         
-        print("Upgraded Level:", player_level)
+        print("Upgraded Level:", game.player_level)
         print("Tasks to unlock:", tasks_unlock)
         print("Rewards:", rewards)
         
@@ -266,7 +314,7 @@ def main():
         if cont != "yes":
             print("Thanks for playing Farmer's Bazaar!")
             break
-
+        
 
 if __name__ == "__main__":
     main()
