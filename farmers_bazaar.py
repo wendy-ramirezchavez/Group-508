@@ -185,7 +185,7 @@ class FarmersBazaar():
    
     def upgrade(self):
         """
-        creates tasks to allow players to level up 
+        creates tasks to allow players to level up and gives players rewards after completing the tasks.
         """
         daily_tasks = FarmersBazaar.daily_task
         need_tasks = daily_tasks.get(self.player_level,[])
