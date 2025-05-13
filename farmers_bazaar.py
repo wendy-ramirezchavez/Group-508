@@ -3,6 +3,25 @@ import timeit
 import random
 
 class FarmersBazaar():
+    """
+    Farmers Bazaar is your virtual farmers market game. Players are able 
+    to sell crops, fulfill orders, and maintain customer satisfaction in order to 
+    earn rewards and money.
+    
+    Attributes:
+        level1 (dict): crops and price for level 1
+        level2 (dict): crops and price for level 2
+        level3 (dict): crops and price for level 3
+        level4 (dict): crops and price for level 4
+        daily_tasks (dict): daily tasks for level up in each level
+        customer_satisfaction (float): customer statisfaction
+        bank_balance (int): players total money
+        crop_list (list): List of available crops
+        unlocked_levels: set of unlocked level
+        player_level (int): players level
+        complete_tasks (list): list of completed daily task
+        current_order: order needed to be fulfilled
+    """
     level1 = {"potato" : 2,"carrot" : 1, "asparagus" : 5, "broccoli" : 4, "corn" : 3}
     level2 = {"wheat" : 2, "flour" : 1, "bread": 5, "biscuits": 4,  "cake": 3}
     level3 = {"basil": 3, "cilantro": 2, "dill": 5,"parsley": 1, "chives": 4}
@@ -16,15 +35,30 @@ class FarmersBazaar():
     }
     
     def __init__(self):
+        """
+        Initializes the game with intial customer_satisfaction, bank_balance, and player levels
+        """
         self.customer_satisfaction = 1.0
         self.bank_balance = 0
         self.crop_list = list(FarmersBazaar.level1.keys())
         self.unlocked_levels = {1}
         self.player_level = 1
         self.completed_tasks = ["watering", "fertilizing"]
+        self.current_order = None
 
 
     def level_check_method(self,user_input, crops_for_sale): 
+        """
+        sums total earned money and adds it to the bank balance as well 
+        as ensures crops typed matches the list
+        
+        Args:
+            user_input (list): list of crops player types
+            crops_for_sale (dict): dictionary of crop at current level
+
+        Returns:
+            tuple: total eaned and customer satisfaction
+        """
         bank = []
         correct = set(user_input) & set(crops_for_sale)
         for crop in correct:
@@ -35,6 +69,13 @@ class FarmersBazaar():
 
 
     def timed (self, crops):
+        """
+        Timer for player to ensure player types in the limited time given
+        Args:
+            crops (list): list of crops the player needs to type
+        Returns:
+            tuple: list of answers typed by the player
+        """
         print(f"You are asked to type these crops:{crops}")
         print("when you are finished, type 'done' ")
         print("Type all the words in time or else you lose.")
@@ -61,12 +102,64 @@ class FarmersBazaar():
                   \nYou forgot a crop to bring to the farmers market your customers were not happy... 
                   \nkeep an eye on your decreasing customer satisfaction. """)
             self.customer_satisfaction -= 0.2
+            return answers, False
         else:
             print("You did not make it in time, your customers were not happy.")
             self.customer_satisfaction -= 0.2
             return answers, False
+        
+    def new_order(self, crop_order):
+        """
+        creates a new random crop order for the player to fulfill
+        Args:
+            crop_order (dict): crops for sale
+        """
+        crop = random.choice(list(crop_order.keys()))
+        quantity = random.randint(2, 4)
+        total = quantity * (crop_order[crop]+1)
+        self.current_order = {
+            "crop": crop,
+            "quantity": quantity,
+            "total": total
+        }
+        print(f"Please fulfill! {quantity} {crop}. Total: ${total}")
+    
+    
+    def complete_order(self, player_input):
+        """
+        checks if player completes order
+
+        Args:
+            player_input (list): players input on crops
+
+        Returns:
+            total (int): total amount of money added to bank balnce 
+            from completeing order
+        """
+        if not self.current_order:
+            print (f"No orders")
+            return 0
+    
+        crop = self.current_order["crop"]
+        asked_qty = self.current_order["quantity"]
+        total = self.current_order["total"]
+    
+        correct_qty = player_input.count(crop)
+    
+        if correct_qty >= asked_qty:
+            self.bank_balance += total
+            print(f"Yayyyyy! Order Complete! You earned ${total}")
+            self.current_order = None
+            return total
+        else:
+            print(f"Order not completed :/)")
+            return 0
+
 
     def new_level_crops(self):
+        """
+        unlocks new lecels and crops based on new level unlocked
+        """
 
         level_next_game = {
          "Level 2": FarmersBazaar.level2,
@@ -91,6 +184,9 @@ class FarmersBazaar():
                 print (f"Yayyyy! New crops: {new_crops} unlocked!")
    
     def upgrade(self):
+        """
+        creates tasks to allow players to level up 
+        """
         daily_tasks = FarmersBazaar.daily_task
         need_tasks = daily_tasks.get(self.player_level,[])
 
@@ -112,6 +208,9 @@ class FarmersBazaar():
         return self.player_level, tasks_unlock, rewards
     
     def beginning(self):
+        """
+        Game introdutction to start up the game and greet player
+        """
         print("""🐝 🍄 🌿 Hello Farmer, welcome to our game Farmer's Bazaar! 🌿 🍄 🐝""")
         print("""
               \nAre you ready to embark on the jouney of growing, harvesting, selling, and spreading joy to your customers?
@@ -126,6 +225,10 @@ class FarmersBazaar():
                 print("Please type 'I can grow!' in terminal to begin")
 
 def main():
+    """
+    Main game function that runs the full program so players can go through
+    levels, tasks, and earn money
+    """
     game = FarmersBazaar()
     game.beginning()
     
