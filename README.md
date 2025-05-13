@@ -21,7 +21,7 @@
 1. First, run **"python3 farmers_bazaar.py**
 2. Read instrcutions provided from the begin function. type **"I can grow!"**
 3. The user will be presented with a list of 5 crops. Memorize these crops, because you will be tested on them next. 
-4. Type **"Ready"** when you are ready to type all crops in command line. 
+4. Type **"Ready"** when you are ready to recall and type all crops in command line. 
 5. The program will begin a 30 second timer, and you will be expected to type each crop that was just presented one by one in the command line. 
 
 
