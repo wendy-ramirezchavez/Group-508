@@ -53,11 +53,14 @@ class FarmersBazaar():
         duration = after - initial
         print(duration)
     
-        if duration < 30:
+        if duration < 30 and self.customer_satisfaction == 100:
             print("You made it in time! You advance to the next level. Type (next level) to continue")
             return answers, True
+        if duration < 30 and self.customer_satisfaction != 100:
+            print("You forgot a crop to bring to the farmers market your customers were not happy... keep an eye on your decreasing customer satisfaction. ")
+            self.customer_satisfaction -= 0.2
         else:
-            print("You did not make it in time :/ you lose a level.")
+            print("You did not make it in time, your customers were not happy.")
             self.customer_satisfaction -= 0.2
             return answers, False
 
