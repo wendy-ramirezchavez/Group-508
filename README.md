@@ -1,4 +1,4 @@
-# Farmers Bazaar
+# 🍉 🌽 🍇 🍓 🫐 🍰 🥕 🥦 🍞 🍎 Farmers Bazaar 🍉 🌽 🍇 🍓 🫐 🍰 🥕 🥦 🍞 🍎
 ## Welcome to our README section of our program. 
 
 
