@@ -148,9 +148,8 @@ def main():
 
         game.new_level_crops()
 
-        player_level, tasks_unlock, rewards = FarmersBazaar.upgrade(
-            player_level, completed_tasks, FarmersBazaar.daily_task
-        )
+        player_level, tasks_unlock, rewards = game.upgrade()
+        
         print("Upgraded Level:", player_level)
         print("Tasks to unlock:", tasks_unlock)
         print("Rewards:", rewards)
