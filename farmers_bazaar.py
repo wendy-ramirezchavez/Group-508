@@ -106,6 +106,23 @@ class FarmersBazaar():
         
         return self.player_level, tasks_unlock, rewards
     
+    def beginning():
+        print("🐝 🍄 🌿 Hello Farmer, welcome to our game Farmer's Bazaar! 🌿 🍄 🐝")
+        print("""
+              Are you ready to embark on the jouney of growing, harvesting, selling, and spreading joy to your customers?
+              
+              🍉 🌽 🍇 🍓 🫐 🍰 🥕 🥦 🍞 🍎 🍉 🌽 🍇 🍓 🫐 🍰 🥕 🥦 🍞 🍎 🍉 🌽 🍇 🍓 🫐 🍰 🥕 🥦 🍞 🍎 🍉 🌽 🍇 🍓 🫐 🍰 🥕 🥦 🍞 🍎 🍉
+              
+              If you are, please type "I can grow!"
+              
+              """)
+        while True: 
+            first_message = input.strip().lower()
+            if first_message == "I can grow!":
+                print("Great! Let's go!")
+                break
+            else:
+                print("Please type 'I can grow!' in terminal to begin")
 
 def main():
     player_level = 1
