@@ -2,9 +2,9 @@
 ## Welcome to our README section of our program. 
 
 
-### Explanation of Purpose of Each File in our Repository: 
+### 🍓 Explanation of Purpose of Each File in our Repository: 
 
-**farmers_bazaar.py** - This is our main file. Graders, TAs, and anyone wanting to play the game can open this file to see our collective code that runs the game. 
+**farmers_bazaar.py** - This is our main file. Graders, TAs, and anyone wanting to play the game can open this file to see our collective code that runs the game. 🍰
 
 **final_project_progress.p** - INACTIVE file that was used in the preliminary stages of our function writing. This file is not to be used during the demonstration of our game. As the method and functions are present in farmers_bazaar.py.
 
@@ -17,7 +17,7 @@
 **timed.py** - INACTIVE file that was used in the preliminary stages of our function writing. This file is not to be used during the demonstration of our game. As the method and functions are present in farmers_bazaar.py.
 
 
-### **Instructions:** How to Run Farmers Bazaar in Command Line
+### 🫐 **Instructions:** How to Run Farmers Bazaar in Command Line
 1. First, run **"python3 farmers_bazaar.py**
 2. Read instrcutions provided from the begin function. type **"I can grow!"**
 3. The user will be presented with a list of 5 crops. Memorize these crops, because you will be tested on them next. 
@@ -25,14 +25,14 @@
 5. The program will begin a 30 second timer, and you will be expected to type each crop that was just presented one by one in the command line. 
 
 
-### **Instructions:** How to Use our Program/Interpret the Output of the Program
+### 🥬 **Instructions:** How to Use our Program/Interpret the Output of the Program
 **Bank Balance:** The bank balance is the amount of money that the user (the farmer) has made at the farmers market that they just attended. If the bank balance reaches a certain amount, you advance to the next level. 
 
 **Customer Satisfaction:** When the user remembers all crops that they must bring to the farmers market, they will keep the same amount of customer satisfaction that they started with. If the customer satisfaction reaches a low enough point, the user (the farmer) loses the game. 
 
 
-### Annotated Bibliography
+### 🥕 Annotated Bibliography
 
 
-### Attribution Table: 
+### 🍎 Attribution Table: 
    
