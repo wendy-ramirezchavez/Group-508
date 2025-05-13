@@ -3,31 +3,11 @@ import timeit
 import random
 
 class FarmersBazaar():
-
-
-    level1 = {"potato" : 2, 
-          "carrot" : 1, 
-          "asparagus" : 5, 
-          "broccoli" : 4, 
-          "corn" : 3}
-    level2 = {"wheat" : 2, 
-          "flour" : 1, 
-          "bread": 5, 
-          "biscuits": 4, 
-          "cake": 3}
-
-    level3 = {"basil": 3, 
-          "cilantro": 2,
-          "dill": 5, 
-          "parsley": 1, 
-          "chives": 4}
-
-    level4 = {"strawberry": 3, 
-          "apple": 1, 
-          "orange": 2, 
-          "blueberries": 4,
-          "raspberries": 5}
-
+    level1 = {"potato" : 2,"carrot" : 1, "asparagus" : 5, "broccoli" : 4, "corn" : 3}
+    level2 = {"wheat" : 2, "flour" : 1, "bread": 5, "biscuits": 4,  "cake": 3}
+    level3 = {"basil": 3, "cilantro": 2, "dill": 5,"parsley": 1, "chives": 4}
+    level4 = {"strawberry": 3,  "apple": 1,"orange": 2,  "blueberries": 4,"raspberries": 5}
+    
     daily_task = {
         1: ["watering", "fertilizing"],
         2: ["planting", "harvesting"],
@@ -36,20 +16,21 @@ class FarmersBazaar():
     }
     
     def __init__(self):
-        self.bank_balance = 0
         self.customer_satisfaction = 1.0
-        self.unlocked_levels = {1}
+        self.bank_balance = 0
         self.crop_list = list(FarmersBazaar.level1.keys())
+        self.unlocked_levels = {1}
+        self.player_level = 1
         self.completed_tasks = ["watering", "fertilizing"]
-        
 
-    def level_check_method(self, user_input, crops_for_sale): 
+
+    def level_check_method(self,user_input, crops_for_sale): 
         bank = []
         correct = set(user_input) & set(crops_for_sale)
         for crop in correct:
             bank.append(crops_for_sale[crop])
         self.bank_balance += sum(bank)
-        self.customer_satisfaction -= len(set(user_input) ^ set(crops_for_sale)) * 10
+        self.customer_satisfaction -= len(set(user_input) ^ set(crops_for_sale))* .10
         return sum(bank), self.customer_satisfaction
 
 
@@ -62,29 +43,30 @@ class FarmersBazaar():
         answers = []
          
         while True:
-            naming = input("Enter crop: ")
-            if naming == "done":  
-                break
-            answers.append(naming)
+         naming = input("Enter crop: ")
+         if naming == "done":  
+            break
+         answers.append(naming)
     
         after = time.time()
-        duration = (after - initial)
-        print(f"Duration: {duration} seconds")
+    
+        duration = after - initial
+        print(duration)
     
         if duration < 30:
             print("You made it in time! You advance to the next level. Type (next level) to continue")
             return answers, True
         else:
             print("You did not make it in time :/ you lose a level.")
-            self.customer_satisfaction = max(0.0, self.customer_satisfaction - 20)
+            self.customer_satisfaction -= 0.2
             return answers, False
 
     def new_level_crops(self):
 
         level_next_game = {
-            "Level 2": FarmersBazaar.level2,
-            "Level 3": FarmersBazaar.level3,
-            "Level 4": FarmersBazaar.level4
+         "Level 2": FarmersBazaar.level2,
+         "Level 3": FarmersBazaar.level3,
+         "Level 4": FarmersBazaar.level4
          }
 
         bank_limit = {
@@ -102,70 +84,67 @@ class FarmersBazaar():
                     if crop not in self.crop_list:
                         self.crop_list.append(crop)
                 print (f"Yayyyy! New crops: {new_crops} unlocked!")
-    
-def upgrade(self):
-    daily_tasks = FarmersBazaar.daily_task
-    need_tasks = daily_tasks.get(player_level,[])
+   
+    def upgrade(self):
+        daily_tasks = FarmersBazaar.daily_task
+        need_tasks = daily_tasks.get(self.player_level,[])
 
-    for task in need_tasks:
-        if task not in self.completed_tasks:
-            return self.player_level, [], {"finish all the task to level up"}
+        for task in need_tasks:
+            if task not in self.completed_tasks:
+                return self.player_level, [], {"finish all the task to level up"}
     
-    self.player_level +=1
-    tasks_unlock = daily_tasks.get(self.player_level,[])
+        self.player_level +=1
+        tasks_unlock = daily_tasks.get(self.player_level,[])
     
-    rewards = {}
-    if 1<= self.player_level <= 4:
-        rewards["starter_kit"] = True
-    elif 5 <= self.player_level <= 9:
-        rewards["upgrade_crops"] = True
-    else: 
-        rewards["premium_market"] = True
+        rewards = {}
+        if 1<= self.player_level <= 4:
+            rewards["starter_kit"] = True
+        elif 5 <= self.player_level <= 9:
+            rewards["upgrade_crops"] = True
+        else: 
+            rewards["premium_market"] = True
         
-    return self.player_level, tasks_unlock, rewards
+        return self.player_level, tasks_unlock, rewards
     
 
 def main():
     player_level = 1
     completed_tasks = ["watering", "fertilizing"]
     game = FarmersBazaar()
-  
+
     levels_in_game = {
         1: FarmersBazaar.level1,
         2: FarmersBazaar.level2,
         3: FarmersBazaar.level3,
         4: FarmersBazaar.level4
     }
+
     while True:
         print(f"\nCurrent Level: {player_level}")
         print(f"Total Bank Balance: ${game.bank_balance}")
-        print(f"Total Customer Satisfaction: {game.customer_satisfaction}")
-       
+        print(f"Total Customer Satisfaction: {game.customer_satisfaction:.2f}")
+
         crops_for_sale = levels_in_game[player_level]
         crop_names = list(crops_for_sale.keys())
         answers, on_time = game.timed(crop_names)
-    
+
         earned, satisfaction = game.level_check_method(answers, crops_for_sale)
-        print(f"Earned: ${earned}, Customer Satisfaction: {satisfaction:20f}")
-    
+        print(f"Earned: ${earned}, Satisfaction: {satisfaction:.2f}")
+
         game.new_level_crops()
+
+        player_level, tasks_unlock, rewards = FarmersBazaar.upgrade(
+            player_level, completed_tasks, FarmersBazaar.daily_task
+        )
+        print("Upgraded Level:", player_level)
+        print("Tasks to unlock:", tasks_unlock)
+        print("Rewards:", rewards)
         
-        player_level, tasks_unlock, rewards = upgrade(
-            player_level, completed_tasks, FarmersBazaar.daily_task)
-        
-        print(f"Upgraded Level: {player_level}")
-        print(f"Unlock Tasks: {tasks_unlock}")
-        print(f"Rewards: {rewards}")
-        
-        cont = input("Do you want to play the next level? (yes/no):")/lower()
+        cont = input("Do you want to play the next level? (yes/no): ").lower()
         if cont != "yes":
             print("Thanks for playing Farmer's Bazaar!")
             break
-            
-    
-    
-  
-    
+
+
 if __name__ == "__main__":
     main()
-
