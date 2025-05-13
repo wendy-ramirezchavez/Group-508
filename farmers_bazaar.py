@@ -22,6 +22,7 @@ class FarmersBazaar():
         self.unlocked_levels = {1}
         self.player_level = 1
         self.completed_tasks = ["watering", "fertilizing"]
+        self.current_order = None
 
 
     def level_check_method(self,user_input, crops_for_sale): 
@@ -61,10 +62,44 @@ class FarmersBazaar():
                   \nYou forgot a crop to bring to the farmers market your customers were not happy... 
                   \nkeep an eye on your decreasing customer satisfaction. """)
             self.customer_satisfaction -= 0.2
+            return answers, False
         else:
             print("You did not make it in time, your customers were not happy.")
             self.customer_satisfaction -= 0.2
             return answers, False
+        
+    def new_order(self, crop_order):
+        crop = random.choice(list(crop_order.keys()))
+        quantity = random.randint(2, 4)
+        total = quantity * (crop_order[crop]+1)
+        self.current_order = {
+            "crop": crop,
+            "quantity": quantity,
+            "total": total
+        }
+        print(f"Please fulfill! {quantity} {crop}. Total: ${total}")
+    
+    
+    def complete_order(self, player_input):
+        if not self.current_order:
+            print (f"No orders")
+            return 0
+    
+        crop = self.current_order["crop"]
+        asked_qty = self.current_order["quantity"]
+        total = self.current_order["total"]
+    
+        correct_qty = player_input.count(crop)
+    
+        if correct_qty >= asked_qty:
+            self.bank_balance += total
+            print(f"Yayyyyy! Order Complete! You earned ${total}")
+            self.current_order = None
+            return total
+        else:
+            print(f"Order not completed :/)")
+            return 0
+
 
     def new_level_crops(self):
 
