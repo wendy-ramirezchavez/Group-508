@@ -26,6 +26,9 @@
 
 
 ### **Instructions:** How to Use our Program/Interpret the Output of the Program
+**Bank Balance:** The bank balance is the amount of money that the user (the farmer) has made at the farmers market that they just attended. If the bank balance reaches a certain amount, you advance to the next level. 
+
+**Customer Satisfaction:** When the user remembers all crops that they must bring to the farmers market, they will keep the same amount of customer satisfaction that they started with. If the customer satisfaction reaches a low enough point, the user (the farmer) loses the game. 
 
 
 ### Annotated Bibliography
