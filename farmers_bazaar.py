@@ -1,4 +1,4 @@
-import time
+mport time
 import timeit
 import random
 
@@ -36,17 +36,17 @@ class FarmersBazaar():
     characters = {
     "Maru": {
         "specialty": "Technology and carpenting",
-        "bonus": "Starts with extra $5 in bank",
+        "bonus": 5,
      
     },
     "Penny": {
         "specialty": "Education and reading",
-        "bonus": "Starts with 1.1 customer satisfaction",
+        "bonus_satisfaction": 1.1,
       
     },
     "Clint": {
         "specialty": "Crafts and building ",
-        "bonus": "Unlocks one random extra crop at start",
+        "bonus_crop": True,
     
     }
     }
@@ -93,7 +93,7 @@ class FarmersBazaar():
         for crop in correct:
             bank.append(crops_for_sale[crop])
         self.bank_balance += sum(bank)
-        self.customer_satisfaction -= len(set(user_input) ^ set(crops_for_sale))* .10
+        self.customer_satisfaction -= len(set(user_input) ^ set(crops_for_sale)) * 0.10
         return sum(bank), self.customer_satisfaction
 
 
@@ -105,37 +105,43 @@ class FarmersBazaar():
         Returns:
             tuple: list of answers typed by the player
         """
+        typed_crops = []
+          
         print(f"You are asked to type these crops:{crops}")
         print("when you are finished, type 'done' ")
         print("Type all the words in time or else you lose.")
     
-        initial = time.time()
-        answers = []
+        start = time.time()
+       
          
         while True:
-         naming = input("Enter crop: ")
-         if naming == "done":  
+         crop = input("Enter crop: ").lower().strip()
+         if crop == "done":  
             break
-         answers.append(naming)
+         typed_crops.append(crop)
     
-        after = time.time()
+        end = time.time()
     
-        duration = after - initial
+        duration = end - start
         print(duration)
+        
+        expected = set(c.lower().strip() for c in crops)
+        typed_set = set(typed_crops)
+
     
-        if duration < 30 and self.customer_satisfaction == 100:
-            print("You made it in time! You advance to the next level. Type (next level) to continue")
-            return answers, True
-        if duration < 30 and self.customer_satisfaction != 100:
-            print("""
-                  \nYou forgot a crop to bring to the farmers market your customers were not happy... 
-                  \nkeep an eye on your decreasing customer satisfaction. """)
+        if duration < 30 and set(typed_crops) == expected:
+           print("✅ You made it in time and typed all the correct crops!")
+           return typed_crops, True
+
+        elif duration < 30 and typed_set != expected:
+            print("""\nYou forgot a crop to bring to the farmers market your customers were not happy... 
+                  keep an eye on your decreasing customer satisfaction. """)
             self.customer_satisfaction -= 0.2
-            return answers, False
+            return typed_crops, False
         else:
             print("You did not make it in time, your customers were not happy.")
             self.customer_satisfaction -= 0.2
-            return answers, False
+            return typed_crops, False
         
     def new_order(self, crop_order):
         """
@@ -205,6 +211,7 @@ class FarmersBazaar():
             if self.bank_balance >= threshold and level not in self.unlocked_levels:
                 self.unlocked_levels.add(level)
                 print(f"Yayyyy! Level {level} unlocked!")
+
         
                 new_crops = list(level_next_game[level].keys())
                 for crop in new_crops:
