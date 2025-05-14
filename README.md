@@ -39,4 +39,6 @@
 
 
 ### 🍎 Attribution Table: 
-! [attribution table] (attribution.png)
+! [attribution table] (attribution.jpg)
+<img width="711" alt="attribution" src="https://github.com/user-attachments/assets/04d49c8c-3ce8-4a14-a6f2-465a3b587320" />
+
