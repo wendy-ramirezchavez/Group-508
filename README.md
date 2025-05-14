@@ -6,7 +6,7 @@
 
 **farmers_bazaar.py** - This is our main file. Graders, TAs, and anyone wanting to play the game can open this file to see our collective code that runs the game. 🍰
 
-**final_project_progress.p** - INACTIVE file that was used in the preliminary stages of our function writing. This file is not to be used during the demonstration of our game. As the method and functions are present in farmers_bazaar.py.
+**final_project_progress.py** - INACTIVE file that was used in the preliminary stages of our function writing. This file is not to be used during the demonstration of our game. As the method and functions are present in farmers_bazaar.py.
 
 **levelup_finalproject.py** - INACTIVE file that was used in the preliminary stages of our function writing. This file is not to be used during the demonstration of our game. As the method and functions are present in farmers_bazaar.py.
 
