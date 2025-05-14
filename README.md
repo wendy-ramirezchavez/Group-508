@@ -32,6 +32,10 @@
 
 
 ### 🥕 Annotated Bibliography
+ #### Sources Used:
+ 1. W3schools.com. W3Schools Online Web Tutorials. (n.d.). https://www.w3schools.com/python/python_json.asp
+ 2. Supercell. (n.d.). Hay Day. The Official Hay Day Website. https://hayday.com/en
+ 3. Stardew Valley Wiki. (2025, March 20). https://stardewvalleywiki.com/Stardew_Valley_Wiki 
 
 
 ### 🍎 Attribution Table: 
