@@ -97,6 +97,9 @@ class FarmersBazaar():
         return sum(bank), self.customer_satisfaction
     
     def memory_block (self, crops_for_sale):
+        """
+        Shows image covering up the crops so user can remember the crops list
+        """
         print('You are getting ready for a farmers market! How exciting!')
         print("Before the farmers market, you must remember to bring all of your crops.")
         print(f'For this farmers market, you must bring the following, {crops_for_sale}.')
@@ -205,6 +208,7 @@ class FarmersBazaar():
             print("You did not make it in time, your customers were not happy.")
             self.customer_satisfaction -= 0.2
             return typed_crops, False
+        
         
     def new_order(self, crop_order):
         """
