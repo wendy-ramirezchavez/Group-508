@@ -96,10 +96,10 @@ class FarmersBazaar():
         self.customer_satisfaction -= len(set(user_input) ^ set(crops_for_sale)) * 0.10
         return sum(bank), self.customer_satisfaction
     
-    def memory_block (self, crops):
+    def memory_block (self, crops_for_sale):
         print('You are getting ready for a farmers market! How exciting!')
         print("Before the farmers market, you must remember to bring all of your crops.")
-        print(f'For this farmers market, you must bring the following, {crops}.')
+        print(f'For this farmers market, you must bring the following, {crops_for_sale}.')
         print("Once you have memorized the crops you must bring to the market, please type 'I am ready'.")
         
         while True: 
